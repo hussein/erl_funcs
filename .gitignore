@@ -3,4 +3,5 @@ deps
 *.o
 *.beam
 *.plt
+erl_funcs.sublime-workspace
 erl_crash.dump
