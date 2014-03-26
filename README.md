@@ -1,4 +1,4 @@
 erl_funcs
 =========
 
-Algorithms for Lists that are not implemented in Erlang
+Algorithms for Lists that are implemented in Erlang
