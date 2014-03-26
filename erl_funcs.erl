@@ -1,6 +1,6 @@
 -module(erl_funcs).
 -import(lists, [reverse/1]).
--export([partition_by/2, drop/2, take/2]).
+-export([partition_by/2, drop/2, take/2, repeat/1, repeat/2, repeatedly/1, repeatedly/2]).
 
 
 %% partition_by function %%
@@ -16,7 +16,8 @@ partition_by(F, HV, [H | T] = L, Acc) ->
   end;
 
 
-partition_by(_, _, [ ], Acc) -> [lists:reverse(Acc), [ ]]. 
+partition_by(_, _, [ ], Acc) -> 
+  [lists:reverse(Acc), [ ]]. 
 
 %%
 
@@ -71,13 +72,26 @@ take(0, _) ->
 %interpose(Separator, Collection).
 
 
-%repeat(X).
+%% repeat function %%
+%% Will kill your CPU!
+
+repeat(X) ->
+  [X] ++ repeat(X).
 
 
-%repeat(Number, X).
+repeat(Number, X) ->
+  take(Number, repeat(X)).
+
+%%
 
 
-%repeatedly(F).
+%% Will kill your CPU!
+
+repeatedly(F) ->
+  [F()] ++ repeatedly(F).
 
 
-%repeatedly(Number, F).
+repeatedly(Number, F) ->
+  take(Number, repeatedly(F)).
+
+%%
